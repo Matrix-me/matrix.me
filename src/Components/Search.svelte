@@ -3,7 +3,7 @@
 </script>
 
 <div class="container">
-    <input placeholder="Foss space..." class="space-input" type="text">
+    <input placeholder="Search for Space" class="space-input" type="text" />
 </div>
 
 <style>

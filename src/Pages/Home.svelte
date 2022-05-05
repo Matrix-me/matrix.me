@@ -1,5 +1,5 @@
 <script>
-	import Spaces from './Spaces.svelte';
+    import Spaces from "./Spaces.svelte";
     import { Col, Row } from "sveltestrap";
 </script>
 
