@@ -19,8 +19,11 @@
       isOpen = event.detail.isOpen;
     }
   </script>
-  <Navbar class="header" color="dark" dark expand="md">
-    <NavbarBrand href="/">Matrix.me</NavbarBrand>
+
+  <Navbar style="font-family: 'Koulen', cursive; font-size: 22px" class="header" dark expand="md">
+    <Nav class="ms-auto">
+      <NavLink style="color: #f8f8f2;" href="/">Matrix.me</NavLink>
+    </Nav>
     <NavbarToggler on:click={() => (isOpen = !isOpen)} />
     <Collapse {isOpen} navbar expand="md" on:update={handleUpdate}>
       <Nav class="ms-auto" navbar>
@@ -31,7 +34,7 @@
           <NavLink href="/about">About</NavLink>
         </NavItem>
         <Dropdown nav inNavbar>
-          <DropdownToggle nav caret>Options</DropdownToggle>
+          <DropdownToggle nav caret>Account</DropdownToggle>
           <DropdownMenu end>
             <DropdownItem>Log in</DropdownItem>
           </DropdownMenu>

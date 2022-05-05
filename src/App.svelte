@@ -12,14 +12,17 @@
 	page.start();
 </script>
 
-<style lang="scss">
-	:global(body) {
+<style lang="scss" global>
+	@import "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css";
+	@import url('https://fonts.googleapis.com/css2?family=Koulen&display=swap');
+	:global(body){
 		margin: 0;
 		padding: 0;
+		background-color: #282a36;
 	}
 </style>
 
 <main>
 	<Header />
 	<svelte:component this={current} />
-  </main>
+</main>
