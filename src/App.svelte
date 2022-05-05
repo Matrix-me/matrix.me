@@ -15,6 +15,7 @@
 <style lang="scss" global>
 	@import "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css";
 	@import url('https://fonts.googleapis.com/css2?family=Koulen&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Koulen&family=Rajdhani:wght@300;400&display=swap');
 	:global(body){
 		margin: 0;
 		padding: 0;
