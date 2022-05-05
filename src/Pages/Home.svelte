@@ -1,4 +1,5 @@
 <script>
+	import Spaces from './Spaces.svelte';
     import { Col, Row } from "sveltestrap";
 </script>
 
@@ -49,6 +50,8 @@
     </Row>
 </div>
 
+<Spaces />
+
 <style>
     .container {
         font-family: "Rajdhani", sans-serif;
@@ -57,7 +60,6 @@
         width: 80%;
         margin: auto;
         margin-top: 10%;
-
     }
     .spaces {
         display: flex;

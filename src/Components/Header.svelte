@@ -31,6 +31,9 @@
           <NavLink href="/">Home</NavLink>
         </NavItem>
         <NavItem>
+          <NavLink href="/spaces">Spaces</NavLink>
+        </NavItem>
+        <NavItem>
           <NavLink href="/about">About</NavLink>
         </NavItem>
         <Dropdown nav inNavbar>

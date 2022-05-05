@@ -5,10 +5,13 @@
 	import Header from './Components/Header.svelte';
 	import About from './Pages/About.svelte';
 	import Home from './Pages/Home.svelte'
+	import Spaces from './Pages/Spaces.svelte'
 
 	let current = Home;
 	page('/', () => (current = Home));
 	page('/about', () => (current = About));
+	page('/spaces', () => (current = Spaces));
+
 	page.start();
 </script>
 
