@@ -16236,6 +16236,7 @@ var app = (function () {
     	let t1;
     	let div2;
     	let h5;
+    	let t2;
 
     	const block = {
     		c: function create() {
@@ -16248,25 +16249,25 @@ var app = (function () {
     			t1 = space();
     			div2 = element("div");
     			h5 = element("h5");
-    			h5.textContent = "Photography space";
+    			t2 = text(/*description*/ ctx[0]);
     			attr_dev(img0, "class", "baner-img svelte-sff0vi");
-    			if (!src_url_equal(img0.src, img0_src_value = "https://images.pexels.com/photos/3587757/pexels-photo-3587757.jpeg?cs=srgb&dl=pexels-phil-desforges-3587757.jpg&fm=jpg")) attr_dev(img0, "src", img0_src_value);
-    			attr_dev(img0, "alt", "");
-    			add_location(img0, file$4, 3, 8, 129);
+    			if (!src_url_equal(img0.src, img0_src_value = /*banerImg*/ ctx[1])) attr_dev(img0, "src", img0_src_value);
+    			attr_dev(img0, "alt", "Baner img");
+    			add_location(img0, file$4, 8, 8, 154);
     			attr_dev(div0, "class", "baner svelte-sff0vi");
-    			add_location(div0, file$4, 1, 4, 23);
+    			add_location(div0, file$4, 7, 4, 126);
     			attr_dev(img1, "class", "circle-img svelte-sff0vi");
-    			if (!src_url_equal(img1.src, img1_src_value = "https://images.pexels.com/photos/1203803/pexels-photo-1203803.jpeg?cs=srgb&dl=pexels-alex-andrews-1203803.jpg&fm=jpg")) attr_dev(img1, "src", img1_src_value);
-    			attr_dev(img1, "alt", "");
-    			add_location(img1, file$4, 10, 8, 381);
+    			if (!src_url_equal(img1.src, img1_src_value = /*banerCircleImg*/ ctx[2])) attr_dev(img1, "src", img1_src_value);
+    			attr_dev(img1, "alt", "Circle baner img");
+    			add_location(img1, file$4, 15, 8, 305);
     			attr_dev(div1, "class", "circle-baner svelte-sff0vi");
-    			add_location(div1, file$4, 9, 4, 346);
+    			add_location(div1, file$4, 14, 4, 270);
     			set_style(h5, "margin", "auto");
-    			add_location(h5, file$4, 17, 8, 631);
+    			add_location(h5, file$4, 22, 8, 469);
     			attr_dev(div2, "class", "description svelte-sff0vi");
-    			add_location(div2, file$4, 16, 4, 597);
+    			add_location(div2, file$4, 21, 4, 435);
     			attr_dev(div3, "class", "card svelte-sff0vi");
-    			add_location(div3, file$4, 0, 0, 0);
+    			add_location(div3, file$4, 6, 0, 103);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -16281,8 +16282,19 @@ var app = (function () {
     			append_dev(div3, t1);
     			append_dev(div3, div2);
     			append_dev(div2, h5);
+    			append_dev(h5, t2);
     		},
-    		p: noop,
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*banerImg*/ 2 && !src_url_equal(img0.src, img0_src_value = /*banerImg*/ ctx[1])) {
+    				attr_dev(img0, "src", img0_src_value);
+    			}
+
+    			if (dirty & /*banerCircleImg*/ 4 && !src_url_equal(img1.src, img1_src_value = /*banerCircleImg*/ ctx[2])) {
+    				attr_dev(img1, "src", img1_src_value);
+    			}
+
+    			if (dirty & /*description*/ 1) set_data_dev(t2, /*description*/ ctx[0]);
+    		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
@@ -16301,22 +16313,48 @@ var app = (function () {
     	return block;
     }
 
-    function instance$4($$self, $$props) {
+    function instance$4($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('Card', slots, []);
-    	const writable_props = [];
+    	let { description } = $$props;
+    	let { banerImg } = $$props;
+    	let { banerCircleImg } = $$props;
+    	const writable_props = ['description', 'banerImg', 'banerCircleImg'];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Card> was created with unknown prop '${key}'`);
     	});
 
-    	return [];
+    	$$self.$$set = $$props => {
+    		if ('description' in $$props) $$invalidate(0, description = $$props.description);
+    		if ('banerImg' in $$props) $$invalidate(1, banerImg = $$props.banerImg);
+    		if ('banerCircleImg' in $$props) $$invalidate(2, banerCircleImg = $$props.banerCircleImg);
+    	};
+
+    	$$self.$capture_state = () => ({ description, banerImg, banerCircleImg });
+
+    	$$self.$inject_state = $$props => {
+    		if ('description' in $$props) $$invalidate(0, description = $$props.description);
+    		if ('banerImg' in $$props) $$invalidate(1, banerImg = $$props.banerImg);
+    		if ('banerCircleImg' in $$props) $$invalidate(2, banerCircleImg = $$props.banerCircleImg);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [description, banerImg, banerCircleImg];
     }
 
     class Card extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$4, create_fragment$4, safe_not_equal, {});
+
+    		init(this, options, instance$4, create_fragment$4, safe_not_equal, {
+    			description: 0,
+    			banerImg: 1,
+    			banerCircleImg: 2
+    		});
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -16324,6 +16362,45 @@ var app = (function () {
     			options,
     			id: create_fragment$4.name
     		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*description*/ ctx[0] === undefined && !('description' in props)) {
+    			console.warn("<Card> was created without expected prop 'description'");
+    		}
+
+    		if (/*banerImg*/ ctx[1] === undefined && !('banerImg' in props)) {
+    			console.warn("<Card> was created without expected prop 'banerImg'");
+    		}
+
+    		if (/*banerCircleImg*/ ctx[2] === undefined && !('banerCircleImg' in props)) {
+    			console.warn("<Card> was created without expected prop 'banerCircleImg'");
+    		}
+    	}
+
+    	get description() {
+    		throw new Error("<Card>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set description(value) {
+    		throw new Error("<Card>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get banerImg() {
+    		throw new Error("<Card>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set banerImg(value) {
+    		throw new Error("<Card>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get banerCircleImg() {
+    		throw new Error("<Card>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set banerCircleImg(value) {
+    		throw new Error("<Card>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
 
@@ -16408,7 +16485,15 @@ var app = (function () {
     	let card;
     	let current;
     	search = new Search({ $$inline: true });
-    	card = new Card({ $$inline: true });
+
+    	card = new Card({
+    			props: {
+    				description: "Best photography community",
+    				banerCircleImg: "https://images.pexels.com/photos/1203803/pexels-photo-1203803.jpeg?cs=srgb&dl=pexels-alex-andrews-1203803.jpg&fm=jpg",
+    				banerImg: "https://images.pexels.com/photos/3587757/pexels-photo-3587757.jpeg?cs=srgb&dl=pexels-phil-desforges-3587757.jpg&fm=jpg"
+    			},
+    			$$inline: true
+    		});
 
     	const block = {
     		c: function create() {

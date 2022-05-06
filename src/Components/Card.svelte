@@ -1,21 +1,26 @@
+<script>
+    export let description;
+    export let banerImg;
+    export let banerCircleImg
+</script>
+
 <div class="card">
     <div class="baner">
-        <!-- these are temporary placeholder images for development time. -->
         <img
             class="baner-img"
-            src="https://images.pexels.com/photos/3587757/pexels-photo-3587757.jpeg?cs=srgb&dl=pexels-phil-desforges-3587757.jpg&fm=jpg"
-            alt=""
+            src={banerImg}
+            alt="Baner img"
         />
     </div>
     <div class="circle-baner">
         <img
             class="circle-img"
-            src="https://images.pexels.com/photos/1203803/pexels-photo-1203803.jpeg?cs=srgb&dl=pexels-alex-andrews-1203803.jpg&fm=jpg"
-            alt=""
+            src={banerCircleImg}
+            alt="Circle baner img"
         />
     </div>
     <div class="description">
-        <h5 style="margin: auto;">Photography space</h5>
+        <h5 style="margin: auto;">{description}</h5>
     </div>
 </div>
 
