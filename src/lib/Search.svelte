@@ -1,5 +1,4 @@
 <script>
-    import { Input } from "sveltestrap";
 </script>
 
 <div class="container">

@@ -65,7 +65,6 @@
         display: flex;
         height: 100%;
     }
-
     .photo {
         width: 100%;
     }
