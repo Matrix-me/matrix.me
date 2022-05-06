@@ -1,6 +1,6 @@
 <script>
-    import Card from "./../Components/Card.svelte";
-    import Search from "./../Components/Search.svelte";
+    import Card from "$lib/Card.svelte";
+    import Search from "$lib/Search.svelte";
 </script>
 
 <Search />
