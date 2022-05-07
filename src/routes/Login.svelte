@@ -1,7 +1,7 @@
 <script>
     import axios from "axios";
     import { Form, FormGroup, Input, Label, Button } from "sveltestrap";
-    import { matrixAuth, isLoggedIn } from "../stores/MatrixStore.js";
+    import { matrixAuth } from "../stores/MatrixStore.js";
     let base_url;
     let credentials = { instance: "", username: "", password: "" };
 
@@ -44,7 +44,6 @@
                     home_server: response.data.home_server,
                     device_id: response.data.device_id,
                 });
-                isLoggedIn.set(true);
                 alert("Login succesful")
             })
             .catch((error) => {

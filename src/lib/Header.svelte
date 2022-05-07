@@ -1,5 +1,5 @@
 <script>
-  import { isLoggedIn } from "./../stores/MatrixStore.js";
+  import { matrixAuth } from "./../stores/MatrixStore.js";
   import {
     Collapse,
     Navbar,
@@ -19,8 +19,14 @@
     isOpen = event.detail.isOpen;
   }
 
-  isLoggedIn.subscribe((data) => {
-    isLogged = data;
+  matrixAuth.subscribe((data) => {
+    data.access_token ? isLogged = true : isLogged = false
+    // if(data.access_token){
+    //   isLogged = true
+    // }
+    // else{
+    //   isLogged = false
+    // }
   });
 </script>
 
