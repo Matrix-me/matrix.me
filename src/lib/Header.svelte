@@ -1,5 +1,6 @@
 <script>
-  import { matrixAuth } from "./../stores/MatrixStore.js";
+  import axios from "axios";
+  import { matrixAuth, IsUserLogged } from "./../stores/MatrixStore.js";
   import {
     Collapse,
     Navbar,
@@ -14,20 +15,24 @@
   } from "sveltestrap";
 
   let isOpen = false;
-  let isLogged;
   function handleUpdate(event) {
     isOpen = event.detail.isOpen;
   }
 
-  matrixAuth.subscribe((data) => {
-    data.access_token ? isLogged = true : isLogged = false
-    // if(data.access_token){
-    //   isLogged = true
-    // }
-    // else{
-    //   isLogged = false
-    // }
-  });
+  async function handleLogOut() {
+    let base_url = $matrixAuth.base_url;
+    let access_token = $matrixAuth.access_token;
+    await axios
+      .post(
+        `${base_url}/_matrix/client/r0/logout?access_token=${access_token}`,
+        null
+      )
+      .then((response) => console.log(response))
+      .catch((error) => {
+        alert("Something went wrong, sorry. Error: " + error);
+      });
+    matrixAuth.set("");
+  }
 </script>
 
 <Navbar
@@ -54,9 +59,15 @@
       <Dropdown nav inNavbar>
         <DropdownToggle nav caret>Account</DropdownToggle>
         <DropdownMenu end>
-          {#if !isLogged}
+          {#if !$IsUserLogged}
             <DropdownItem>
-              <NavLink style="color: black;" href="/Login">Login</NavLink>
+              <NavLink style="color: black;" href="/Login">Log in</NavLink>
+            </DropdownItem>
+          {:else}
+            <DropdownItem>
+              <NavLink style="color: black;" href="/" on:click={handleLogOut}
+                >Log out</NavLink
+              >
             </DropdownItem>
           {/if}
         </DropdownMenu>

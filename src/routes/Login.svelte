@@ -1,7 +1,8 @@
 <script>
     import axios from "axios";
     import { Form, FormGroup, Input, Label, Button } from "sveltestrap";
-    import { matrixAuth } from "../stores/MatrixStore.js";
+    import { matrixAuth, IsUserLogged } from "../stores/MatrixStore.js";
+
     let base_url;
     let credentials = { instance: "", username: "", password: "" };
 
@@ -43,54 +44,55 @@
                     access_token: response.data.access_token,
                     home_server: response.data.home_server,
                     device_id: response.data.device_id,
+                    base_url: base_url
                 });
-                alert("Login succesful")
+                alert("Login succesful");
             })
             .catch((error) => {
                 alert("Something went wrong, sorry. Error: " + error);
             });
     };
 
-    matrixAuth.subscribe(data => {
-        console.log(data)
-    })
-
 </script>
 
 <div class="container">
-    <Form on:submit={(e) => login(e)}>
-        <FormGroup>
-            <Label>Your Matrix instance</Label>
-            <Input
-                type="text"
-                name="instance"
-                id="instance"
-                placeholder="e.g. Matrix.org"
-                bind:value={credentials.instance}
-            />
-        </FormGroup>
-        <FormGroup>
-            <Label>Your username</Label>
-            <Input
-                type="text"
-                name="username"
-                id="username"
-                placeholder="e.g. johndoe"
-                bind:value={credentials.username}
-            />
-        </FormGroup>
-        <FormGroup>
-            <Label>Your password</Label>
-            <Input
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Super password!"
-                bind:value={credentials.password}
-            />
-        </FormGroup>
-        <Button type="submit">Log in</Button>
-    </Form>
+    {#if !$IsUserLogged}
+        <Form on:submit={(e) => login(e)}>
+            <FormGroup>
+                <Label>Your Matrix instance</Label>
+                <Input
+                    type="text"
+                    name="instance"
+                    id="instance"
+                    placeholder="e.g. Matrix.org"
+                    bind:value={credentials.instance}
+                />
+            </FormGroup>
+            <FormGroup>
+                <Label>Your username</Label>
+                <Input
+                    type="text"
+                    name="username"
+                    id="username"
+                    placeholder="e.g. johndoe"
+                    bind:value={credentials.username}
+                />
+            </FormGroup>
+            <FormGroup>
+                <Label>Your password</Label>
+                <Input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="Super password!"
+                    bind:value={credentials.password}
+                />
+            </FormGroup>
+            <Button type="submit">Log in</Button>
+        </Form>
+    {:else}
+        <h1>You're logged in!</h1>
+    {/if}
 </div>
 
 <style>
